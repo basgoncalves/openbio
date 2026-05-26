@@ -1,0 +1,44 @@
+# Build artifacts
+bin/
+dist/
+*.apk
+*.aab
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+*.egg-info/
+.pytest_cache/
+.coverage
+
+# Buildozer
+.buildozer/
+.buildozer_buildozer.spec
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+.env
+.env.local
+
+# Logs
+*.log
+buildozer_build.log
+build_attempt.log
+console.log
+
+# Cache
+.cache/
+*.cache

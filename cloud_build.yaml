@@ -1,0 +1,73 @@
+# Kivy Cloud Build Service Configuration
+# Generated for PoseRecorder APK v0.2
+# May 26, 2026
+
+# This file configures the build for Kivy's official Cloud Build Service
+# Upload buildozer.spec and this file to build.kivy.org
+
+app_name: PoseRecorder
+version: 0.2
+package_name: poserecorder
+package_domain: org.posecapture
+
+# Build target
+target: android
+
+# Build variant
+# Use 'debug' for development/testing
+# Use 'release' for app store submission
+variant: debug
+
+# Python version
+python_version: 3.11
+
+# Kivy version
+kivy_version: 2.3.0
+
+# Requirements (minimal profile)
+# Kivy Camera widget replaces cv2.VideoCapture
+# MediaPipe handles pose detection (pip-installable, pre-built wheel)
+requirements:
+  - python3
+  - kivy==2.3.0
+  - mediapipe==0.10.9
+
+# Android API levels
+android_api: 31
+android_minapi: 24
+android_ndk: 25b
+
+# Architecture
+android_arch: arm64-v8a
+
+# Build features
+enable_androidx: true
+accept_sdk_license: true
+
+# Gradle dependencies
+gradle_dependencies:
+  - androidx.appcompat:appcompat:1.3.1
+
+# Permissions
+permissions:
+  - CAMERA
+  - READ_EXTERNAL_STORAGE
+  - WRITE_EXTERNAL_STORAGE
+  - INTERNET
+  - RECORD_AUDIO
+
+# Features required
+features:
+  - android.hardware.camera
+  - android.hardware.camera.autofocus
+
+# Orientation
+orientation: landscape
+
+# Build notes
+build_notes: |
+  Ultra-minimal Kivy+MediaPipe build for pose detection.
+  No OpenCV, NumPy, or Java interop dependencies.
+  Uses Kivy Camera widget for video capture.
+  MediaPipe for real-time pose detection.
+  Outputs MOT format files for OpenSim analysis.
