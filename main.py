@@ -23,8 +23,21 @@ from kivy.clock import Clock
 from kivy.graphics.texture import Texture
 from kivy.uix.image import Image as KivyImage
 
-from pose_detector import PoseDetector
-from analysis import MobileAnalyzer
+try:
+    from pose_detector import PoseDetector
+    HAS_POSE_DETECTOR = True
+except ImportError:
+    print("⚠ PoseDetector not available (normal on Android without MediaPipe)")
+    HAS_POSE_DETECTOR = False
+    PoseDetector = None
+
+try:
+    from analysis import MobileAnalyzer
+    HAS_ANALYZER = True
+except ImportError:
+    print("⚠ MobileAnalyzer not available")
+    HAS_ANALYZER = False
+    MobileAnalyzer = None
 
 # Import settings from desktop app
 sys.path.insert(0, str(Path(__file__).parent.parent))
@@ -120,7 +133,11 @@ class PoseRecorderApp(App):
 
     def build(self):
         """Build the UI"""
-        self.pose_detector = PoseDetector()
+        # Initialize pose detector if available
+        self.pose_detector = PoseDetector() if HAS_POSE_DETECTOR else None
+        if not self.pose_detector and HAS_POSE_DETECTOR:
+            print("⚠ PoseDetector initialization failed")
+
         self.recording = False
         self.recording_manager = None
         self.session_dir = None

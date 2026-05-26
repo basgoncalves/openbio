@@ -1,10 +1,25 @@
 """
 Real-time pose detection using MediaPipe
 Handles skeleton overlay, angle calculation, and drawing on frames
+
+NOTE: MediaPipe and OpenCV not available on Android - this module gracefully
+degrades to placeholder detection on mobile platforms.
 """
 
-import numpy as np
-import cv2
+# Try importing heavy dependencies (will fail on Android without prebuilt wheels)
+try:
+    import numpy as np
+    HAS_NUMPY = True
+except ImportError:
+    HAS_NUMPY = False
+    np = None
+
+try:
+    import cv2
+    HAS_OPENCV = True
+except ImportError:
+    HAS_OPENCV = False
+    cv2 = None
 
 try:
     import mediapipe as mp
@@ -119,11 +134,15 @@ class PoseDetector:
         Detect pose in frame
 
         Args:
-            frame_bgr: OpenCV frame (BGR format)
+            frame_bgr: OpenCV frame (BGR format) or None on Android without OpenCV
 
         Returns:
             landmarks dict or None if detection fails
         """
+        # On Android without OpenCV, return placeholder
+        if not HAS_OPENCV or frame_bgr is None:
+            return None
+
         if self.detector_type is None:
             return None
 
@@ -183,6 +202,11 @@ class PoseDetector:
         Returns:
             Angle in degrees (0-180)
         """
+        if not HAS_NUMPY:
+            return 0.0  # Placeholder on Android
+
+        import math
+
         a = np.array(pt_a)
         v = np.array(pt_vertex)
         b = np.array(pt_b)
@@ -202,13 +226,17 @@ class PoseDetector:
         Draw pose skeleton and angles on frame
 
         Args:
-            frame: OpenCV frame to draw on
+            frame: OpenCV frame to draw on (or None on Android without OpenCV)
             landmarks: dict of landmark positions
             show_angles: Whether to display angles
 
         Returns:
-            Annotated frame
+            Annotated frame, or original frame if OpenCV not available
         """
+        # Return frame as-is if OpenCV unavailable
+        if not HAS_OPENCV or frame is None:
+            return frame
+
         annotated = frame.copy()
 
         if landmarks is None:

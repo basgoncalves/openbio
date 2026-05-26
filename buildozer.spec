@@ -14,10 +14,9 @@ source.include_exts = py,png,jpg,kv,atlas,task
 # - python3: language runtime
 # - kivy: UI framework (includes Camera widget for video capture)
 # - pyjnius: Android Java interop for file storage
-# - mediapipe: Pose detection (only pip dependency, pre-built wheel available)
-# OpenCV and numpy removed due to buildozer/p4a hostpython3 SSL limitations
-# Kivy Camera replaces cv2.VideoCapture for video input
-requirements = python3,kivy,mediapipe
+# NOTE: mediapipe, opencv-python, numpy removed - no prebuilt wheels for Android arm64-v8a
+# Kivy Camera provides video input; pose detection will be added via Java bindings in Phase 5
+requirements = python3,kivy
 
 # Permissions
 android.permissions = CAMERA,READ_EXTERNAL_STORAGE,WRITE_EXTERNAL_STORAGE,INTERNET,RECORD_AUDIO
