@@ -18,7 +18,6 @@ jobs:
 
     - name: Build APK with Buildozer
       run: |
-        cd /home/user/hostcwd
         echo "y" | buildozer -y android debug
 
     - name: Upload APK artifact
