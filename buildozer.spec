@@ -1,9 +1,9 @@
 [app]
 
 # Basic app info
-title = Pose Recording & Analysis
-package.name = poserecorder
-package.domain = org.posecapture
+title = OpenBio
+package.name = openbio
+package.domain = com.openbio
 
 # Source
 source.dir = .

@@ -23,7 +23,7 @@ jobs:
     - name: Upload APK artifact
       uses: actions/upload-artifact@v3
       with:
-        name: poserecorder-apk
+        name: openbio-apk
         path: bin/*.apk
         retention-days: 30
 

@@ -5,10 +5,10 @@
 # This file configures the build for Kivy's official Cloud Build Service
 # Upload buildozer.spec and this file to build.kivy.org
 
-app_name: PoseRecorder
+app_name: OpenBio
 version: 0.2
-package_name: poserecorder
-package_domain: org.posecapture
+package_name: openbio
+package_domain: com.openbio
 
 # Build target
 target: android
