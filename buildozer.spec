@@ -41,4 +41,25 @@ orientation = landscape
 android.api = 31
 android.minapi = 24
 android.ndk = 25b
-androi
+android.accept_sdk_license = True
+android.gradle_dependencies = androidx.appcompat:appcompat:1.3.1
+
+# NDK settings
+android.ndk_api = 24
+
+# Performance
+android.arch = arm64-v8a
+
+# Gradle
+android.enable_androidx = True
+
+# Storage
+android.presplash_lottie =
+
+[buildozer]
+
+# Log level
+log_level = 2
+
+# Display warnings
+warn_on_root = 1

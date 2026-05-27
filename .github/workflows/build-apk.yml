@@ -16,9 +16,17 @@ jobs:
     steps:
     - uses: actions/checkout@v4
 
+    - name: Accept Android SDK Licenses
+      run: |
+        # Accept all Android SDK licenses
+        mkdir -p $HOME/.android
+        echo -e "\n\nSDK Licenses:\n" > $HOME/.android/repositories.cfg
+        yes | sdkmanager --licenses 2>/dev/null || true
+
     - name: Build APK with Buildozer
       run: |
-        # Clear any previous build cache to avoid pyjnius issues
+        cd mobile
+        # Clear any previous build cache
         rm -rf .buildozer
         # Build with fresh environment
         echo "y" | buildozer -y android debug
