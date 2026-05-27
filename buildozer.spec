@@ -23,8 +23,9 @@ requirements = python3,kivy
 # Permissions
 android.permissions = CAMERA,READ_EXTERNAL_STORAGE,WRITE_EXTERNAL_STORAGE,INTERNET,RECORD_AUDIO
 
-# Features
-android.features = android.hardware.camera,android.hardware.camera.autofocus
+# Features (NOTE: p4a/buildozer may not support --feature flag in this version)
+# Hardware features are declared through permissions above
+# android.features = android.hardware.camera,android.hardware.camera.autofocus
 
 # Version
 version = 0.2
@@ -40,25 +41,4 @@ orientation = landscape
 android.api = 31
 android.minapi = 24
 android.ndk = 25b
-android.accept_sdk_license = True
-android.gradle_dependencies = androidx.appcompat:appcompat:1.3.1
-
-# NDK settings
-android.ndk_api = 24
-
-# Performance
-android.arch = arm64-v8a
-
-# Gradle
-android.enable_androidx = True
-
-# Storage
-android.presplash_lottie =
-
-[buildozer]
-
-# Log level
-log_level = 2
-
-# Display warnings
-warn_on_root = 1
+androi
