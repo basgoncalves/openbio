@@ -8,6 +8,8 @@ package.domain = com.openbio
 # Source
 source.dir = .
 source.include_exts = py,png,jpg,kv,atlas,task
+# Ensure all Python files are included, especially settings.py
+source.include_patterns = **/*.py,**/*.png,**/*.jpg,**/*.kv,**/*.atlas,**/*.task
 
 # Requirements (python packages)
 # ABSOLUTE MINIMUM: Only what p4a recipes can provide without complex build tools
@@ -56,3 +58,7 @@ android.presplash_lottie =
 [buildozer]
 
 # Log level
+log_level = 2
+
+# Display warnings
+warn_on_root = 1

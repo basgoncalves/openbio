@@ -5,7 +5,6 @@ Uses Kivy Camera widget (no OpenCV dependency) - minimal build for buildozer
 """
 
 import os
-import sys
 from pathlib import Path
 from datetime import datetime
 import threading
@@ -39,15 +38,14 @@ except ImportError:
     HAS_ANALYZER = False
     MobileAnalyzer = None
 
-# Import settings from desktop app
-sys.path.insert(0, str(Path(__file__).parent.parent))
+# Import settings from local module (now in mobile folder for buildozer compatibility)
 try:
     from settings import RecordingSettings
     OUTPUT_BASE = Path(RecordingSettings.OUTPUT_DIR_TEMPLATE)
 except (ImportError, AttributeError):
     # Fallback if settings not available
     OUTPUT_BASE = Path.home() / "PoseLiftingRecordings"
-    print("⚠ Using fallback output directory (desktop settings not found)")
+    print("⚠ Using fallback output directory (settings import failed)")
 
 # Set window size for desktop testing only (not on Android)
 import platform
