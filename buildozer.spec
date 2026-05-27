@@ -56,11 +56,3 @@ android.presplash_lottie =
 [buildozer]
 
 # Log level
-log_level = 2
-
-# Display warnings
-warn_on_root = 1
-
-# Custom p4a recipes directory (fixes pyjnius==1.7.0 arm64-v8a issue)
-# Note: Set P4A_RECIPE_DIR environment variable before building
-# export P4A_RECIPE_DIR=$PWD/p4a_recipes

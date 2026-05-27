@@ -1,0 +1,9 @@
+[app]
+
+[buildozer]
+
+[buildozer:log_level]
+2
+
+# Fix pyjnius arm64-v8a wheel issue
+[buildozer:android]
