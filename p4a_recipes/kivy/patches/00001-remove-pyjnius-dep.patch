@@ -1,0 +1,16 @@
+# Patch to remove pyjnius dependency which lacks arm64-v8a wheels
+---
+ recipes/kivy/__init__.py | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/recipes/kivy/__init__.py b/recipes/kivy/__init__.py
+index 1234567..abcdefg 100644
+--- a/recipes/kivy/__init__.py
++++ b/recipes/kivy/__init__.py
+@@ -10,7 +10,7 @@ class KivyRecipe(CppRecipe):
+     """
+     version = "master"
+-    depends = ["python3", "sdl2", "sdl2_image", "sdl2_mixer", "sdl2_ttf", "setuptools", "pyjnius"]
++    depends = ["python3", "sdl2", "sdl2_image", "sdl2_mixer", "sdl2_ttf", "setuptools"]
+     site_packages_name = "kivy"
+     call_hostpython_via_targetpython = False

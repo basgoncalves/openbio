@@ -13,8 +13,8 @@ source.include_exts = py,png,jpg,kv,atlas,task
 # ABSOLUTE MINIMUM: Only what p4a recipes can provide without complex build tools
 # - python3: language runtime
 # - kivy: UI framework (includes Camera widget for video capture)
-# - pyjnius: Android Java interop for file storage
 # NOTE: mediapipe, opencv-python, numpy removed - no prebuilt wheels for Android arm64-v8a
+# pyjnius==1.7.0 removed - version lacks Android arm64-v8a wheels
 # Kivy Camera provides video input; pose detection will be added via Java bindings in Phase 5
 requirements = python3,kivy
 
@@ -41,6 +41,9 @@ android.ndk = 25b
 android.accept_sdk_license = True
 android.gradle_dependencies = androidx.appcompat:appcompat:1.3.1
 
+# NDK settings
+android.ndk_api = 24
+
 # Performance
 android.arch = arm64-v8a
 
@@ -57,3 +60,7 @@ log_level = 2
 
 # Display warnings
 warn_on_root = 1
+
+# Custom p4a recipes directory (fixes pyjnius==1.7.0 arm64-v8a issue)
+# Note: Set P4A_RECIPE_DIR environment variable before building
+# export P4A_RECIPE_DIR=$PWD/p4a_recipes
